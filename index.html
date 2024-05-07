@@ -30,23 +30,23 @@
     <h1 id="status1"></h1>
     <h1 id="status2"></h1>
     <script>
-        const apiKey = "YOUR_API_KEY"; // Replace with your actual Thingspeak API key
-        const url1 = `https://api.thingspeak.com/channels/2490599/fields/2.json?api_key=${apiKey}&results=2`;
-        const url2 = `https://api.thingspeak.com/channels/2490599/fields/4.json?api_key=${apiKey}&results=2`;
+        const apiKey = "M7WOWNXG1I69DUW8";
+        const url1 = `https://api.thingspeak.com/channels/2490599/fields/2.json?api_key=${apiKey}&results=300`;
+        const url2 = `https://api.thingspeak.com/channels/2490599/fields/4.json?api_key=${apiKey}&results=300`;
 
         const getStatus = async () => {
             try {
-                const response1 = await fetch(url1);
-                const response2 = await fetch(url2);
+                response1 = await fetch(url1);
+                response2 = await fetch(url2);
 
-                const data1 = await response1.json();
-                const latestValue1 = data1.feeds[0].field2;
-                const status1 = latestValue1 === "1" ? "ON" : "OFF";
+                data1 = await response1.json();
+                latestValue1 = data1.feeds[0].field2;
+                status1 = latestValue1 === "1" ? "ON" : "OFF";
                 document.getElementById("status1").textContent = "Washing Machine 01: " + status1;
 
-                const data2 = await response2.json();
-                const latestValue2 = data2.feeds[0].field4;
-                const status2 = latestValue2 === "1" ? "ON" : "OFF";
+                data2 = await response2.json();
+                latestValue2 = data2.feeds[0].field4;
+                status2 = latestValue2 === "1" ? "ON" : "OFF";
                 document.getElementById("status2").textContent = "Washing Machine 02: " + status2;
             } catch (error) {
                 console.error(error);
