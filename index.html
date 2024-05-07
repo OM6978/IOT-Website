@@ -1,61 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QT7M0GFFLL"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-QT7M0GFFLL');
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Washing Machine Status</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        .status {
-            font-size: 48px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <h1 id="status1"></h1>
-    <h1 id="status2"></h1>
-    <script>
-        const apiKey = "M7WOWNXG1I69DUW8";
-        const url1 = `https://api.thingspeak.com/channels/2490599/fields/2.json?api_key=${apiKey}&results=1`;
-        const url2 = `https://api.thingspeak.com/channels/2490599/fields/4.json?api_key=${apiKey}&results=1`;
-
-        const getStatus = async () => {
-            try {
-                response1 = await fetch(url1);
-                response2 = await fetch(url2);
-
-                data1 = await response1.json();
-                latestValue1 = data1.feeds[0].field2;
-                status1 = latestValue1 === "1" ? "ON" : "OFF";
-                document.getElementById("status1").textContent = "Washing Machine 01: " + status1;
-
-                data2 = await response2.json();
-                latestValue2 = data2.feeds[0].field4;
-                status2 = latestValue2 === "1" ? "ON" : "OFF";
-                document.getElementById("status2").textContent = "Washing Machine 02: " + status2;
-            } catch (error) {
-                console.error(error);
-                document.getElementById("status1").textContent = "Error";
-                document.getElementById("status2").textContent = "Error";
-            }
-        };
-
-        getStatus();
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
